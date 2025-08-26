@@ -62,12 +62,18 @@ local function AimbotTab()
 
    local Farming = false
 
+   local CooldownActive = false
+
    spawn(function()
       workspace.DescendantAdded:Connect(function(Descendant)
          if not Farming then return end
+         if CooldownActive then return end
+         CooldownActive = true
          if Descendant.Name == "Coin_Server" then
             AlignPosition.Position = Descendant.Position
          end
+         wait(3)
+         CooldownActive = false
       end)
       while wait() do
          if not Farming then continue end
@@ -94,6 +100,7 @@ local function AimbotTab()
                if v.Name == "Coin_Server" then
                   AlignPosition.Position = v.Position
                end
+               wait(3)
             end
          end
       end,
