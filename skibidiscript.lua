@@ -1,5 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
+local Player = game.Players.LocalPlayer
+
 local Window = Rayfield:CreateWindow({
    Name = "Memml Hub",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
@@ -47,10 +49,14 @@ local function AimbotTab()
    local Farming = false
 
    spawn(function()
-      while wait() do
-         if not Farming then continue end
-         print("ohio farming")
-      end
+      workspace.DescendantAdded:Connect(function(Descendant)
+         if not Farming then return end
+         if Descendant.Name == "Coin_Server" then
+            local Character = Player.Character
+            local HRP = Character:WaitForChild("HumanoidRootPart")
+            HRP.Position = Descendant.Position
+         end
+      end)
    end)
 
    local FarmCoinsToggle = AimbotTab:CreateToggle({
@@ -59,6 +65,11 @@ local function AimbotTab()
       Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
       Callback = function(Value)
          Farming = Value
+         for i, v in workspace:GetDescendants() do
+            local Character = Player.Character
+            local HRP = Character:WaitForChild("HumanoidRootPart")
+            HRP.Position = v.Position
+         end
       end,
    })
 end
