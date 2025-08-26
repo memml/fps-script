@@ -54,7 +54,9 @@ local function AimbotTab()
          if Descendant.Name == "Coin_Server" then
             local Character = Player.Character
             local HRP = Character:WaitForChild("HumanoidRootPart")
+            local Torso = Character:WaitForChild("Torso")
             HRP.Position = Descendant.Position
+            Torso.Position = HRP.Position
          end
       end)
    end)
@@ -67,11 +69,13 @@ local function AimbotTab()
          Farming = Value
          local Character = Player.Character
          local HRP = Character:WaitForChild("HumanoidRootPart")
+         local Torso = Character:WaitForChild("Torso")
          HRP.Anchored = Value
 
          if Value == true then
             for i, v in workspace:GetDescendants() do
                HRP.Position = v.Position
+               Torso.Position = HRP.Position
             end
          end
       end,
