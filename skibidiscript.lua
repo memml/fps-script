@@ -13,6 +13,8 @@ AlignPosition.Parent = NewAttachment
 AlignPosition.Enabled = false
 AlignPosition.Responsiveness = 200
 AlignPosition.RigidityEnabled = true
+AlignPosition.Mode = Enum.PositionAlignmentMode.OneAttachment
+AlignPosition.Attachment0 = NewAttachment
 
 local Window = Rayfield:CreateWindow({
    Name = "Memml Hub",
