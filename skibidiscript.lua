@@ -37,6 +37,8 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
-local AimbotTab = Window:CreateTab("MM2 Autofarm", 4483362458) -- Title, Image
-
-local Section = Tab:CreateSection("Farming")
+local function AimbotTab()
+   local AimbotTab = Window:CreateTab("MM2 Autofarm", 4483362458) -- Title, Image
+   
+   local FarmingSection = AimbotTab:CreateSection("Farming")
+end
