@@ -42,3 +42,5 @@ local function AimbotTab()
    
    local FarmingSection = AimbotTab:CreateSection("Farming")
 end
+
+spawn(AimbotTab())
