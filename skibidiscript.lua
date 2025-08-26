@@ -41,6 +41,26 @@ local function AimbotTab()
    local AimbotTab = Window:CreateTab("MM2 Autofarm", 4483362458) -- Title, Image
    
    local FarmingSection = AimbotTab:CreateSection("Farming")
+
+   local Divider1 = AimbotTab:CreateDivider()
+
+   local Farming = false
+
+   spawn(function()
+      while wait() do
+         if not Farming then continue end
+         print("ohio farming")
+      end
+   end)
+
+   local FarmCoinsToggle = AimbotTab:CreateToggle({
+      Name = "Farm Coins",
+      CurrentValue = false,
+      Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+      Callback = function(Value)
+         Farming = Value
+      end,
+   })
 end
 
 spawn(AimbotTab())
