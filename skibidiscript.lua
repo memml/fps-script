@@ -65,10 +65,14 @@ local function AimbotTab()
       Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
       Callback = function(Value)
          Farming = Value
-         for i, v in workspace:GetDescendants() do
-            local Character = Player.Character
-            local HRP = Character:WaitForChild("HumanoidRootPart")
-            HRP.Position = v.Position
+         local Character = Player.Character
+         local HRP = Character:WaitForChild("HumanoidRootPart")
+         HRP.Anchored = Value
+
+         if Value == true then
+            for i, v in workspace:GetDescendants() do
+               HRP.Position = v.Position
+            end
          end
       end,
    })
