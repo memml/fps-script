@@ -72,7 +72,7 @@ local function AimbotTab()
          if Descendant.Name == "Coin_Server" then
             AlignPosition.Position = Descendant.Position
          end
-         wait(3)
+         wait(1.5)
          CooldownActive = false
       end)
       while wait() do
@@ -100,7 +100,7 @@ local function AimbotTab()
                if v.Name == "Coin_Server" then
                   AlignPosition.Position = v.Position
                end
-               wait(3)
+               wait(1.5)
             end
          end
       end,
