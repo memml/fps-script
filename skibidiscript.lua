@@ -2,6 +2,18 @@ local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Player = game.Players.LocalPlayer
 
+local Character = Player.Character
+local RootPart = Character.HumanoidRootPart
+
+local NewAttachment = Instance.new("Attachment")
+NewAttachment.Parent = RootPart
+
+local AlignPosition = Instance.new("AlignPosition")
+AlignPosition.Parent = NewAttachment
+AlignPosition.Enabled = false
+AlignPosition.Responsiveness = 200
+AlignPosition.RigidityEnabled = true
+
 local Window = Rayfield:CreateWindow({
    Name = "Memml Hub",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
@@ -52,13 +64,18 @@ local function AimbotTab()
       workspace.DescendantAdded:Connect(function(Descendant)
          if not Farming then return end
          if Descendant.Name == "Coin_Server" then
-            local Character = Player.Character
-            local HRP = Character:WaitForChild("HumanoidRootPart")
-            local Torso = Character:WaitForChild("Torso")
-            HRP.Position = Descendant.Position
-            Torso.Position = HRP.Position
+            AlignPosition.Position = Descendant.Position
          end
       end)
+      while wait() do
+         if not Farming then continue end
+
+         for i, v in Character:GetChildren() do
+            if v:IsA("BasePart") then
+               v.CanCollide = false
+            end
+         end
+      end
    end)
 
    local FarmCoinsToggle = AimbotTab:CreateToggle({
@@ -67,15 +84,14 @@ local function AimbotTab()
       Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
       Callback = function(Value)
          Farming = Value
-         local Character = Player.Character
-         local HRP = Character:WaitForChild("HumanoidRootPart")
-         local Torso = Character:WaitForChild("Torso")
-         HRP.Anchored = Value
+
+         AlignPosition.Enabled = Value
 
          if Value == true then
             for i, v in workspace:GetDescendants() do
-               HRP.Position = v.Position
-               Torso.Position = HRP.Position
+               if v.Name == "Coin_Server" then
+                  AlignPosition.Position = v.Position
+               end
             end
          end
       end,
