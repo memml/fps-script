@@ -5,7 +5,7 @@ local Window = Rayfield:CreateWindow({
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "Loading Memml Hub",
    LoadingSubtitle = "by Memml",
-   ShowText = "Rayfield", -- for mobile users to unhide rayfield, change if you'd like
+   ShowText = "Memml Hub", -- for mobile users to unhide rayfield, change if you'd like
    Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
 
    ToggleUIKeybind = "K", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
@@ -36,3 +36,7 @@ local Window = Rayfield:CreateWindow({
       Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
+
+local AimbotTab = Window:CreateTab("MM2 Autofarm", 4483362458) -- Title, Image
+
+local Section = Tab:CreateSection("Farming")
